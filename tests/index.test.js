@@ -102,7 +102,7 @@ describe('Output', () => {
   const d = new EasyDate(2022, 2, 2, 8, 30, 0)
   test('Formatting', () => {
     expect(d.format('y/n/d')).toEqual('22/2/2')
-    expect(d.format('W M D, Y')).toEqual('Wednesday February 2, 2022')
+    expect(d.format('W M D, Y')).toEqual('Wednesday February 02, 2022')
     expect(d.format('H:I n d')).toEqual('8:30 Feb 22')
   })
 })
