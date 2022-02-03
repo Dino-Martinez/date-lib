@@ -21,7 +21,7 @@ describe('Construction', () => {
 })
 
 describe('Accessors', () => {
-  const d = new EasyDate()
+  const d = new EasyDate('2/2/2022')
   
   test('Day', () => {
     expect(d.day).toEqual('Wednesday')
