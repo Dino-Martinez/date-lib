@@ -103,6 +103,6 @@ describe('Output', () => {
   test('Formatting', () => {
     expect(d.format('y/n/d')).toEqual('22/2/2')
     expect(d.format('W M D, Y')).toEqual('Wednesday February 02, 2022')
-    expect(d.format('h:I m d')).toEqual('8:30 Feb 22')
+    expect(d.format('h:I m d')).toEqual('8:30 Feb 2')
   })
 })
