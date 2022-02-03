@@ -11,6 +11,13 @@ class EasyDate {
     return value.slice(0, 3)
   }
 
+  _pad (value) {
+    if (typeof value !== 'string')
+      value = '' + value
+    
+    return value.padStart(2, '0')
+  }
+
   // Accessors
   get day () {
     return DAYS[this._date.getDay()]
@@ -26,6 +33,11 @@ class EasyDate {
 
   get mon () {
     return this._shorten(this.month)
+  }
+
+  get monthNum () {
+    // No longer 0 indexed :)
+    return this._date.getMonth() + 1
   }
 
   get year () {
@@ -91,6 +103,42 @@ class EasyDate {
 
   set secs (newVal) {
     return this._date.setSeconds(newVal)
+  }
+
+  // Methods
+  format(mask) {
+    const SPECIALCHARACTERS = {
+      'Y': this.year,                 // 2022
+      'y': this.yr,                   // 22
+      'M': this.month,                // February
+      'm': this.mon,                  // Feb
+      'N': this._pad(this.monthNum),  // 02
+      'n': this.monthNum,             // 2
+      'W': this.day,                  // Wednesday
+      'w': this.dy,                   // Wed
+      'D': this._pad(this.date),      // 02
+      'd': this.date,                 // 2
+      'H': this._pad(this.hours),
+      'h': this.hours,
+      'I': this._pad(this.mins),
+      'i': this.mins,
+      'S': this._pad(this.secs),
+      's': this.secs
+    }
+
+    let formatted = ''
+
+    // Type check mask param
+    if (typeof mask !== 'string')
+      throw new Error('Mask must be a string!')
+    
+    // Parse mask, building formatted output along the way
+    for (let next of mask) {
+      const replacement = SPECIALCHARACTERS[next] ?? next
+      formatted += replacement
+    }
+
+    return formatted
   }
 }
 
