@@ -150,6 +150,28 @@ class EasyDate {
 
     return formatted
   }
+
+  when() {
+    const now = new EasyDate()
+    if (now.year < this.year)
+      return this.year - now.year + ' years from now'
+
+    if (now.year > this.year)
+      return now.year - this.year + ' years ago'
+
+    if (now.monthNum < this.monthNum)
+      return this.monthNum - now.monthNum + ' months from now'
+
+    if (now.monthNum > this.monthNum)
+      return now.monthNum - this.monthNum + ' months ago'
+    
+    if (now.date < this.date)
+      return this.date - now.date + ' days from now'
+
+    if (now.date > this.date)
+      return now.date - this.date + ' days ago'
+
+  }
 }
 
 module.exports = {
