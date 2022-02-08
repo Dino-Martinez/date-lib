@@ -4,11 +4,13 @@
   "description": "A useful library for handling Date objects in JS",
   "main": "index.js",
   "scripts": {
-    "test": "jest ."
+    "test": "jest .",
+    "docs": " documentation build src/** -f html -o docs"
   },
   "author": "Secundino Martinez",
   "license": "ISC",
   "devDependencies": {
+    "documentation": "^13.2.5",
     "jest": "^27.4.7"
   },
   "dependencies": {

@@ -1,5 +1,9 @@
 const {MONTHNUMS, MONTHS, DAYS} = require('./utils/enums')
 const indicator = require('ordinal/indicator')
+
+/**
+  * This wrapper class intends to make working with JavaScript dates easier and simpler.
+  */
 class EasyDate {
   constructor (...args) {
     this._date = new Date(...args)
@@ -114,6 +118,13 @@ class EasyDate {
   }
 
   // Methods
+
+  /**
+   * Format the {@link EasyDate} object into a string, based on the provided mask.
+   * 
+   * @param {string} mask 
+   * @returns {string} the formatted date string 
+   */
   format(mask) {
     const SPECIALCHARACTERS = {
       'Y': this.year,                 // 2022
@@ -151,6 +162,10 @@ class EasyDate {
     return formatted
   }
 
+  /**
+   * Detect when this {@link EasyDate} instance is relative to right now
+   * @returns {string} When this date is
+   */
   when() {
     const now = new EasyDate()
     if (now.year < this.year)
