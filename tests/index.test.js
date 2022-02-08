@@ -100,7 +100,10 @@ describe('Mutators', () => {
 
 describe('Output', () => {
   const d = new EasyDate(2022, 1, 2, 8, 30, 0)
-  const t = new EasyDate(2022, 1, 7, 8, 30, 0)
+  const t = new EasyDate(2022, 1, 10, 8, 30, 0)
+  const now = new EasyDate()
+  const past = new EasyDate(now.year, now.monthNum-1, now.date - 5, 0, 0, 0)
+  const future = new EasyDate(now.year, now.monthNum-1, now.date + 3, 0, 0, 0)
   test('Formatting', () => {
     expect(d.format('y/n/d')).toEqual('22/2/2')
     expect(d.format('W M D, Y')).toEqual('Wednesday February 02, 2022')
@@ -111,8 +114,13 @@ describe('Output', () => {
     expect(d.format('y/n/p')).toEqual('22/2/2nd')
     expect(d.format('W M P, Y')).toEqual('Wednesday February 02nd, 2022')
     expect(d.format('h:I m p')).toEqual('8:30 Feb 2nd')
-    expect(t.format('y/n/p')).toEqual('22/2/7th')
-    expect(t.format('W M P, Y')).toEqual('Monday February 07th, 2022')
-    expect(t.format('h:I m p')).toEqual('8:30 Feb 7th')
+    expect(t.format('y/n/p')).toEqual('22/2/10th')
+    expect(t.format('W M P, Y')).toEqual('Thursday February 10th, 2022')
+    expect(t.format('h:I m p')).toEqual('8:30 Feb 10th')
+  })
+
+  test('When function', () => {
+    expect(past.when()).toEqual('5 days ago')
+    expect(future.when()).toEqual('3 days from now')
   })
 })
