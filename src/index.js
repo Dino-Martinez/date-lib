@@ -1,4 +1,5 @@
 const {MONTHNUMS, MONTHS, DAYS} = require('./utils/enums')
+const indicator = require('ordinal/indicator')
 class EasyDate {
   constructor (...args) {
     this._date = new Date(...args)
@@ -16,6 +17,13 @@ class EasyDate {
       value = '' + value
     
     return value.padStart(2, '0')
+  }
+
+  _indicator(value) {
+    if (typeof value !== 'number')
+      return value 
+    
+    return indicator(value)
   }
 
   // Accessors
@@ -118,6 +126,8 @@ class EasyDate {
       'w': this.dy,                   // Wed
       'D': this._pad(this.date),      // 02
       'd': this.date,                 // 2
+      'P': this._pad(this.date) + this._indicator(this.date),
+      'p': this.date + this._indicator(this.date),
       'H': this._pad(this.hours),
       'h': this.hours,
       'I': this._pad(this.mins),
